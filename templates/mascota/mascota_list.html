@@ -1,0 +1,36 @@
+{% extends 'adminlte/base.html' %}
+{% load static %}
+<div class="container">
+    {% block section %}
+    <div class="card text-white bg-primary mb-3"style="max-width: 100rem;">
+        <div class="card-header">
+         <h2>Mascotas</h2>
+        </div>
+        </div>
+    <hr>
+{% endblock section %}
+{% block maincontent %}
+<div class="row well">
+    {% for p in object_list.all %}
+    <div class="col-md-4 well">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ p.nombre }}</h3>
+            </div>
+            <div class="panel-body">
+                <a href="{% url 'mascota-detail' p.id %}">
+                    <img src="{% static p.fotos.url %}" style="width:200px;height:200px;" />
+                </a>
+            </div>
+            <div class="panel-footer">
+                {% if p.comment %}
+                {{ p.comment }}
+                {% else %}
+                <a href="{% url 'mascota-update' p.id %}">edit comments</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock maincontent %}

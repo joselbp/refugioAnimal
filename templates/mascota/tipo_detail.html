@@ -1,0 +1,35 @@
+{% extends 'adminlte/base.html' %}
+{% load static %}
+
+<div class="container">
+    {% block section %}
+    <div class="card text-white bg-primary mb-3" >
+        <div class="card-header">
+            <h2>{{ object.nombre }}</h2>
+        </div>
+        </div>
+    <hr>
+
+{% endblock section %}
+
+
+{% block content %}
+<div>
+    <table border="1px">
+        <tr>
+            {% for p in object.mascota_set.all %}
+                <td>
+                    
+                    
+                    <div >{{ p.nombre }}</div>
+                  
+                        <a href="{% url 'mascota-detail' p.id %}">
+                            <img src="{% static p.foto.url %}" style="width:200px;height:200px"/>
+                        </a>
+                    </div>
+                </td>
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+{% endblock content %}

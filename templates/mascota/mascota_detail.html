@@ -1,0 +1,25 @@
+{% extends 'adminlte/base.html' %}
+{% load static %}
+{% block section %}
+   <h2>
+       {{ object.nombre }}
+       
+       {% if object.tipo_id %}
+         ( <a href="{% url "tipo-detail" object.tipo_id %}">
+             {{ object.tipo }}
+           </a> )
+       {% endif %}
+    </h2>
+    <p><strong>Comentario: </strong>{{ object.comment|default:"no comments" }}</p>
+    <a href="{% url "mascota-update" object.id %}">edit</a>
+    <a href="{% url "mascota-delete" object.id %}">delete</a>
+   <hr>
+{% endblock section %}
+
+{% block maincontent %}
+<div>
+ <div>
+     <img src="{% static object.foto.url %}" style="width:550px;height:420px" />
+ </div>
+</div>
+{% endblock maincontent %} 

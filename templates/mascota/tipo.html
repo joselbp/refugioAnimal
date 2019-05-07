@@ -1,0 +1,22 @@
+
+{% extends 'adminlte/base.html' %}
+{% block section %}
+<div class="card text-black bg-primary mb-3" >
+        <div class="card-header">
+         <h2>Tipo</h2>
+        </div>
+        </div>
+    <hr>
+{% endblock section %}
+
+{% block content %}
+    <div class="card" style="width: 18rem;">
+        {% for c in object_list %}
+        <h2><a href="{% url 'tipo-detail' c.pk %}" >
+            {{ c.nombre }} 
+            <br>
+        </a></h2>
+            
+        {% endfor %}
+    </div>
+{% endblock content %}
